@@ -9,6 +9,7 @@ import { MenuItem, Select } from "@mui/material";
 import Spinner from "../../../../utils/Spinner";
 import { SET_ERRORS } from "../../../../redux/actionTypes";
 import * as classes from "../../../../utils/styles";
+import toast from "react-hot-toast";
 
 const Body = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -38,6 +39,7 @@ const Body = () => {
     e.preventDefault();
     setError({});
     setLoading(true);
+    toast.loading("Processing...");
     if (
       value.name === "" &&
       value.dob === "" &&
@@ -46,11 +48,16 @@ const Body = () => {
       value.avatar === "" &&
       value.designation === ""
     ) {
-      alert("Enter atleast one value");
+      // alert("Enter atleast one value");
+      toast.dismiss();
+      toast.error("Enter atleast one value");
       setLoading(false);
     } else {
       dispatch(updateFaculty(value));
-      alert("Kindly login again to see updates");
+
+      toast.dismiss();
+      toast.success("Kindly login again to see updates");
+      // alert("Kindly login again to see updates");
     }
   };
 
@@ -77,7 +84,8 @@ const Body = () => {
 
           <div
             onClick={() => navigate("/faculty/update/password")}
-            className="flex space-x-2 cursor-pointer">
+            className="flex space-x-2 cursor-pointer"
+          >
             <VisibilityOffIcon />
             <h1 className="font-bold">Password</h1>
           </div>
@@ -146,7 +154,8 @@ const Body = () => {
                     value={value.department}
                     onChange={(e) =>
                       setValue({ ...value, department: e.target.value })
-                    }>
+                    }
+                  >
                     <MenuItem value="">None</MenuItem>
                     {departments?.map((dp, idx) => (
                       <MenuItem key={idx} value={dp.department}>
@@ -190,7 +199,8 @@ const Body = () => {
               <button
                 onClick={() => navigate("/admin/profile")}
                 className={classes.adminFormClearButton}
-                type="button">
+                type="button"
+              >
                 Cancel
               </button>
             </div>

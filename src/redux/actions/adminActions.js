@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import {
   ADMIN_LOGIN,
   UPDATE_ADMIN,
@@ -39,11 +40,16 @@ export const adminSignIn = (formData, navigate) => async (dispatch) => {
 
 export const adminUpdatePassword = (formData, navigate) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.adminUpdatePassword(formData);
     dispatch({ type: UPDATE_PASSWORD, payload: true });
-    alert("Password Updated");
+    // alert("Password Updated");
+    toast.dismiss();
+    toast.success("Password Updated Successfully");
     navigate("/admin/home");
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
@@ -93,28 +99,43 @@ export const getAllSubject = () => async (dispatch) => {
 
 export const updateAdmin = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.updateAdmin(formData);
+    toast.dismiss();
+    toast.success("Admin updated Successfully");
     dispatch({ type: UPDATE_ADMIN, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
 
 export const addAdmin = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.addAdmin(formData);
-    alert("Admin Added Successfully");
+    // alert("Admin Added Successfully");
+    toast.dismiss();
+    toast.success("Admin Added Successfully");
     dispatch({ type: ADD_ADMIN, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
 export const createNotice = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.createNotice(formData);
-    alert("Notice Created Successfully");
+    // alert("Notice Created Successfully");
+    toast.dismiss();
+    toast.success("Notice Created Successfully");
     dispatch({ type: CREATE_NOTICE, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
@@ -128,65 +149,100 @@ export const getAdmin = (formData) => async (dispatch) => {
 };
 export const deleteAdmin = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.deleteAdmin(formData);
-    alert("Admin Deleted");
+    // alert("Admin Deleted");
+    toast.dismiss();
+    toast.success("Admin Deleted Successfully");
     dispatch({ type: DELETE_ADMIN, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
 export const deleteFaculty = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.deleteFaculty(formData);
-    alert("Faculty Deleted");
+    // alert("Faculty Deleted");
+    toast.dismiss();
+    toast.success("Faculty Deleted Successfully");
     dispatch({ type: DELETE_FACULTY, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
 export const deleteStudent = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.deleteStudent(formData);
-    alert("Student Deleted");
+    // alert("Student Deleted");
+    toast.dismiss();
+    toast.success("Student Deleted Successfully");
     dispatch({ type: DELETE_STUDENT, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
 export const deleteSubject = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.deleteSubject(formData);
-    alert("Subject Deleted");
+    // alert("Subject Deleted");
+    toast.dismiss();
+    toast.success("Subject Deleted Successfully");
     dispatch({ type: DELETE_SUBJECT, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
 export const deleteDepartment = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.deleteDepartment(formData);
-    alert("Department Deleted");
+    // alert("Department Deleted");
+    toast.dismiss();
+    toast.success("Department Deleted Successfully");
     dispatch({ type: DELETE_DEPARTMENT, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
 export const addDepartment = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.addDepartment(formData);
-    alert("Department Added Successfully");
+    // alert("Department Added Successfully");
+    toast.dismiss();
+    toast.success("Department Added Successfully");
     dispatch({ type: ADD_DEPARTMENT, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
 
 export const addFaculty = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.addFaculty(formData);
-    alert("Faculty Added Successfully");
+    // alert("Faculty Added Successfully");
+    toast.dismiss();
+    toast.success("Faculty Added Successfully");
     dispatch({ type: ADD_FACULTY, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
@@ -202,10 +258,15 @@ export const getFaculty = (department) => async (dispatch) => {
 
 export const addSubject = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.addSubject(formData);
-    alert("Subject Added Successfully");
+    // alert("Subject Added Successfully");
+    toast.dismiss();
+    toast.success("Subject Added Successfully");
     dispatch({ type: ADD_SUBJECT, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
@@ -221,10 +282,15 @@ export const getSubject = (formData) => async (dispatch) => {
 
 export const addStudent = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.addStudent(formData);
-    alert("Student Added Successfully");
+    // alert("Student Added Successfully");
+    toast.dismiss();
+    toast.success("Student Added Successfully");
     dispatch({ type: ADD_STUDENT, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };

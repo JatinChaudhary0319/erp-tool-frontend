@@ -6,6 +6,7 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
+import toast from "react-hot-toast";
 const isNotActiveStyle =
   "flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize hover:bg-gray-200 py-2 my-1";
 const isActiveStyle =
@@ -16,7 +17,8 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logout = () => {
-    alert("OOPS! Your session expired. Please Login again");
+    // alert("OOPS! Your session expired. Please Login again");
+    toast.error("OOPS! Your session expired. Please Login again");
     dispatch({ type: "LOGOUT" });
     navigate("/login/studentlogin");
   };
@@ -38,7 +40,8 @@ const Sidebar = () => {
             to="/student/home"
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle
-            }>
+            }
+          >
             <HomeIcon className="" />
             <h1 className="font-normal">Dashboard</h1>
           </NavLink>
@@ -46,7 +49,8 @@ const Sidebar = () => {
             to="/student/profile"
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle
-            }>
+            }
+          >
             <AssignmentIndIcon className="" />
             <h1 className="font-normal">Profile</h1>
           </NavLink>
@@ -56,7 +60,8 @@ const Sidebar = () => {
             to="/student/testresult"
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle
-            }>
+            }
+          >
             <AddIcon className="" />
             <h1 className="font-normal">Test results</h1>
           </NavLink>
@@ -64,7 +69,8 @@ const Sidebar = () => {
             to="/student/attendance"
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle
-            }>
+            }
+          >
             <AddIcon className="" />
             <h1 className="font-normal">Attendance</h1>
           </NavLink>
@@ -74,7 +80,8 @@ const Sidebar = () => {
             to="/student/subjectlist"
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle
-            }>
+            }
+          >
             <EngineeringIcon className="" />
             <h1 className="font-normal">Subject List</h1>
           </NavLink>

@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import reducers from "./redux/reducers";
 import thunk from "redux-thunk";
+import { Toaster } from "react-hot-toast";
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
@@ -15,6 +16,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <App />
+        <Toaster />
       </Router>
     </Provider>
   </React.StrictMode>,

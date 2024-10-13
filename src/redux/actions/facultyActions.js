@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import {
   SET_ERRORS,
   FACULTY_LOGIN,
@@ -25,11 +26,16 @@ export const facultySignIn = (formData, navigate) => async (dispatch) => {
 export const facultyUpdatePassword =
   (formData, navigate) => async (dispatch) => {
     try {
+      toast.loading("Processing...");
       const { data } = await api.facultyUpdatePassword(formData);
       dispatch({ type: UPDATE_PASSWORD, payload: true });
-      alert("Password Updated");
+      toast.dismiss();
+      toast.success("Password Updated Successfully");
+      // alert("Password Updated");
       navigate("/faculty/home");
     } catch (error) {
+      toast.dismiss();
+      toast.error(error?.response?.result?.message || "Something went wrong");
       dispatch({ type: SET_ERRORS, payload: error.response.data });
     }
   };
@@ -45,11 +51,16 @@ export const updateFaculty = (formData) => async (dispatch) => {
 
 export const createTest = (formData) => async (dispatch) => {
   try {
+    toast.loading("Processing...");
     const { data } = await api.createTest(formData);
-    alert("Test Created Successfully");
+    // alert("Test Created Successfully");
+    toast.dismiss();
+    toast.success("Test Created Successfully");
 
     dispatch({ type: ADD_TEST, payload: true });
   } catch (error) {
+    toast.dismiss();
+    toast.error(error?.response?.result?.message || "Something went wrong");
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
 };
@@ -82,10 +93,15 @@ export const uploadMark =
         year,
         test,
       };
+      toast.loading("Processing...");
       const { data } = await api.uploadMarks(formData);
-      alert("Marks Uploaded Successfully");
+      // alert("Marks Uploaded Successfully");
+      toast.dismiss();
+      toast.success("Marks Uploaded Successfully");
       dispatch({ type: MARKS_UPLOADED, payload: true });
     } catch (error) {
+      toast.dismiss();
+      toast.error(error?.response?.result?.message || "Something went wrong");
       dispatch({ type: SET_ERRORS, payload: error.response.data });
     }
   };
@@ -101,10 +117,15 @@ export const markAttendance =
         year,
         section,
       };
+      toast.loading("Processing...");
       const { data } = await api.markAttendance(formData);
-      alert("Attendance Marked Successfully");
+      // alert("Attendance Marked Successfully");
+      toast.dismiss();
+      toast.success("Attendance Marked Successfully");
       dispatch({ type: ATTENDANCE_MARKED, payload: true });
     } catch (error) {
+      toast.dismiss();
+      toast.error(error?.response?.result?.message || "Something went wrong");
       dispatch({ type: SET_ERRORS, payload: error.response.data });
     }
   };

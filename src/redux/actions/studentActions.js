@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import {
   SET_ERRORS,
   UPDATE_PASSWORD,
@@ -23,11 +24,16 @@ export const studentSignIn = (formData, navigate) => async (dispatch) => {
 export const studentUpdatePassword =
   (formData, navigate) => async (dispatch) => {
     try {
+      toast.loading("Processing...");
       const { data } = await api.studentUpdatePassword(formData);
       dispatch({ type: UPDATE_PASSWORD, payload: true });
-      alert("Password Updated");
+      // alert("Password Updated");
+      toast.dismiss();
+      toast.success("Password Updated Successfully");
       navigate("/student/home");
     } catch (error) {
+      toast.dismiss();
+      toast.error(error?.response?.result?.message || "Something went wrong");
       dispatch({ type: SET_ERRORS, payload: error.response.data });
     }
   };
