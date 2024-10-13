@@ -3,6 +3,8 @@ import { Avatar } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.png"
+
 const Header = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
@@ -13,13 +15,13 @@ const Header = () => {
   };
   return (
     <div className="flex-[0.05] flex justify-between items-center mx-5 my-2">
-      <div className="flex items-center ">
+      <div className="flex items-center gap-2">
         <img
-          src="https://icon-library.com/images/cms-icon/cms-icon-11.jpg"
+          src={logo}
           alt=""
           className="h-7"
         />
-        <h1 className="font-bold text-blue-600 text-sm">CMS</h1>
+        <h1 className="font-bold text-blue-600 text-sm">ERP</h1>
       </div>
       <h1 className="font-semibold text-black">Welcome</h1>
       <div className="flex items-center space-x-3">
