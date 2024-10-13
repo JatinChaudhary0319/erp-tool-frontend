@@ -118,6 +118,14 @@ const AdminLogin = () => {
               {error.usernameError || error.passwordError}
             </p>
           )}
+          <p className="text-sm text-white">
+            <p className="text-center">
+            <span className="text-base text-[#515966] font-semibold">Note:&nbsp;</span>
+            <span className="text-[#04bd7d]">For Guest User</span><br />
+            </p>
+            Username:&nbsp; jatinChaudhary<br />
+            Password:&nbsp;&nbsp; 123456
+          </p>
         </form>
       </div>
     </div>

@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
+import logo from "./assets/logo.png";
+
 import AddAdmin from "./components/admin/addAdmin/AddAdmin";
 import AddDepartment from "./components/admin/addDepartment/AddDepartment";
 import AddFaculty from "./components/admin/addFaculty/AddFaculty";
@@ -44,61 +47,119 @@ import DeleteSubject from "./components/admin/deleteSubject/DeleteSubject";
 import CreateNotice from "./components/admin/createNotice/CreateNotice";
 
 const App = () => {
-  return (
-    <Routes>
-      <Route exact path="/" element={<Login />} />
+  const [width, setWidth] = useState(window.innerWidth);
 
-      {/* Admin  */}
+  const updateWindowDimensions = () => {
+    setWidth(window.innerWidth);
+  };
 
-      <Route path="/login/adminlogin" element={<AdminLogin />} />
-      <Route path="/admin/home" element={<AdminHome />} />
-      <Route path="/admin/profile" element={<AdminProfile />} />
-      <Route path="/admin/update" element={<AdminUpdate />} />
-      <Route path="/admin/update/password" element={<AdminPassword />} />
-      <Route
-        path="/admin/updatepassword"
-        element={<AdminFirstTimePassword />}
-      />
-      <Route path="/admin/createnotice" element={<CreateNotice />} />
-      <Route path="/admin/addadmin" element={<AddAdmin />} />
-      <Route path="/admin/deleteadmin" element={<DeleteAdmin />} />
-      <Route path="/admin/adddepartment" element={<AddDepartment />} />
-      <Route path="/admin/deletedepartment" element={<DeleteDepartment />} />
-      <Route path="/admin/addfaculty" element={<AddFaculty />} />
-      <Route path="/admin/deletefaculty" element={<DeleteFaculty />} />
-      <Route path="/admin/deletestudent" element={<DeleteStudent />} />
-      <Route path="/admin/deletesubject" element={<DeleteSubject />} />
-      <Route path="/admin/allfaculty" element={<GetFaculty />} />
-      <Route path="/admin/addstudent" element={<AddStudent />} />
-      <Route path="/admin/addsubject" element={<AddSubject />} />
-      <Route path="/admin/allsubject" element={<GetSubject />} />
-      <Route path="/admin/allstudent" element={<GetStudent />} />
+  useEffect(() => {
+    window.addEventListener("resize", updateWindowDimensions);
+    return () => {
+      window.removeEventListener("resize", updateWindowDimensions);
+    };
+  }, []);
 
-      {/* Faculty  */}
+  const mobileTablet = width <= 1100;
 
-      <Route path="/login/facultylogin" element={<FacultyLogin />} />
-      <Route path="/faculty/home" element={<FacultyHome />} />
-      <Route path="/faculty/password" element={<FacultyFirstTimePassword />} />
-      <Route path="/faculty/profile" element={<FacultyProfile />} />
-      <Route path="/faculty/update" element={<FacultyUpdate />} />
-      <Route path="/faculty/update/password" element={<FacultyPassword />} />
-      <Route path="/faculty/createtest" element={<CreateTest />} />
-      <Route path="/faculty/uploadmarks" element={<UploadMarks />} />
-      <Route path="/faculty/markattendance" element={<MarkAttendance />} />
+  if (mobileTablet) {
+    return (
+      <div className="flex flex-col justify-center items-center h-screen w-full gap-5">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "36px",
+            gap: "10px",
+          }}
+        >
+          <img
+            src={logo}
+            alt="Travellify"
+            style={{ height: "36px", width: "36px" }}
+          />
+          <p
+            style={{
+              fontSize: "24px",
+              textDecoration: "none",
+            }}
+          >
+            NexERP
+          </p>
+        </div>
+        <p>
+          Currently, we're not supporting Mobile & Tablets{" "}
+          <span role="img" aria-label="Warn">
+            🙏
+          </span>
+        </p>
+      </div>
+    );
+  } else {
+    return (
+      <Routes>
+        <Route exact path="/" element={<Login />} />
 
-      {/* Student  */}
+        {/* Admin  */}
 
-      <Route path="/login/studentlogin" element={<StudentLogin />} />
-      <Route path="/student/home" element={<StudentHome />} />
-      <Route path="/student/password" element={<StudentFirstTimePassword />} />
-      <Route path="/student/profile" element={<StudentProfile />} />
-      <Route path="/student/update" element={<StudentUpdate />} />
-      <Route path="/student/update/password" element={<StudentPassword />} />
-      <Route path="/student/subjectlist" element={<SubjectList />} />
-      <Route path="/student/testresult" element={<TestResult />} />
-      <Route path="/student/attendance" element={<Attendance />} />
-    </Routes>
-  );
+        <Route path="/login/adminlogin" element={<AdminLogin />} />
+        <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin/profile" element={<AdminProfile />} />
+        <Route path="/admin/update" element={<AdminUpdate />} />
+        <Route path="/admin/update/password" element={<AdminPassword />} />
+        <Route
+          path="/admin/updatepassword"
+          element={<AdminFirstTimePassword />}
+        />
+        <Route path="/admin/createnotice" element={<CreateNotice />} />
+        <Route path="/admin/addadmin" element={<AddAdmin />} />
+        <Route path="/admin/deleteadmin" element={<DeleteAdmin />} />
+        <Route path="/admin/adddepartment" element={<AddDepartment />} />
+        <Route path="/admin/deletedepartment" element={<DeleteDepartment />} />
+        <Route path="/admin/addfaculty" element={<AddFaculty />} />
+        <Route path="/admin/deletefaculty" element={<DeleteFaculty />} />
+        <Route path="/admin/deletestudent" element={<DeleteStudent />} />
+        <Route path="/admin/deletesubject" element={<DeleteSubject />} />
+        <Route path="/admin/allfaculty" element={<GetFaculty />} />
+        <Route path="/admin/addstudent" element={<AddStudent />} />
+        <Route path="/admin/addsubject" element={<AddSubject />} />
+        <Route path="/admin/allsubject" element={<GetSubject />} />
+        <Route path="/admin/allstudent" element={<GetStudent />} />
+
+        {/* Faculty  */}
+
+        <Route path="/login/facultylogin" element={<FacultyLogin />} />
+        <Route path="/faculty/home" element={<FacultyHome />} />
+        <Route
+          path="/faculty/password"
+          element={<FacultyFirstTimePassword />}
+        />
+        <Route path="/faculty/profile" element={<FacultyProfile />} />
+        <Route path="/faculty/update" element={<FacultyUpdate />} />
+        <Route path="/faculty/update/password" element={<FacultyPassword />} />
+        <Route path="/faculty/createtest" element={<CreateTest />} />
+        <Route path="/faculty/uploadmarks" element={<UploadMarks />} />
+        <Route path="/faculty/markattendance" element={<MarkAttendance />} />
+
+        {/* Student  */}
+
+        <Route path="/login/studentlogin" element={<StudentLogin />} />
+        <Route path="/student/home" element={<StudentHome />} />
+        <Route
+          path="/student/password"
+          element={<StudentFirstTimePassword />}
+        />
+        <Route path="/student/profile" element={<StudentProfile />} />
+        <Route path="/student/update" element={<StudentUpdate />} />
+        <Route path="/student/update/password" element={<StudentPassword />} />
+        <Route path="/student/subjectlist" element={<SubjectList />} />
+        <Route path="/student/testresult" element={<TestResult />} />
+        <Route path="/student/attendance" element={<Attendance />} />
+      </Routes>
+    );
+  }
 };
 
 export default App;
